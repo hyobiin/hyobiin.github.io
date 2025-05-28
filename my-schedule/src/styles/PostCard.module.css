@@ -1,0 +1,35 @@
+.card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    margin-bottom: 1.5rem;
+}
+
+.title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.title:hover {
+    text-decoration: underline;
+}
+
+.description {
+    color: #555;
+    margin: 0.5rem 0 1rem;
+    line-height: 1.4;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: #888;
+}
+
+.username {
+    font-weight: 500;
+}
