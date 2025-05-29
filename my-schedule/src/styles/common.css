@@ -11,6 +11,7 @@ body {
 }
 
 /* 탭 */
+.tab_box{padding:15px;}
 .tab_box button{padding:10px;border-radius:8px;background:#eee;cursor:pointer;}
 .tab_box button.active{background:#e0e0e0;font-weight:bold;}
 .tab_box button + button{margin-left:3px;}

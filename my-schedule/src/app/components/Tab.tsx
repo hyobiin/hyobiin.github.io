@@ -1,8 +1,10 @@
+import { Category } from "@/types";
+
 type Tab = { id: number; name: string; };
 type TabProps = {
     tabList: Tab[];
     selectedTab: string;
-    setSelectedTab: (tab: string) => void;
+    setSelectedTab: (tab: Category) => void;
 };
 
 export default function Tab({ tabList, selectedTab, setSelectedTab }: TabProps){
@@ -13,7 +15,7 @@ export default function Tab({ tabList, selectedTab, setSelectedTab }: TabProps){
                 key={item.id}
                 type='button'
                 className={selectedTab === item.name ? 'active' : ''}
-                onClick={() => setSelectedTab(item.name)}
+                onClick={() => setSelectedTab(item.name as Category)}
             >
                 {item.name}
             </button>

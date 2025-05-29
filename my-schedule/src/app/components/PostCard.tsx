@@ -1,8 +1,13 @@
 'use client';
 import styles from '../../styles/PostCard.module.css';
 import Link from 'next/link';
+import { Post } from '@/types';
 
-export default function PostCard({ post }) {
+type PostCardProps = {
+    post: Post;
+};
+
+export default function PostCard({ post }: PostCardProps) {
     const { title, description, date, username } = post;
 
     return(

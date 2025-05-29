@@ -4,40 +4,18 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PostCard from "./components/PostCard";
 import Tab from "./components/Tab";
-import { Post, TabItem } from "@/types";
-
-const tabNames = ['전체', '인기', '최신', '카테고리'] as const;
-type TabType = typeof tabNames[number];
+import { TabItem, Category } from "@/types";
+import { posts } from "@/data";
 
 export default function Home() {
-  const [selectedTab, setSelectedTab] = useState<TabType>('전체');
+  const [selectedTab, setSelectedTab] = useState<Category>('전체');
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const posts: Post[] = [
-    {
-      id: 1,
-      title: '인기 포스트',
-      description: '1번 포스트 설명',
-      date: '2025-05-28',
-      username: 'user1',
-      category: '인기'
-    },
-    {
-      id: 2,
-      title: '최신 포스트',
-      description: '2번 포스트 설명',
-      date: '2025-05-30',
-      username: 'user2',
-      category: '최신'
-    },
-    {
-      id: 3,
-      title: '카테고리 포스트',
-      description: '3번 포스트 설명',
-      date: '2025-05-30',
-      username: 'user3',
-      category: '카테고리'
-    },
-  ];
+  const filteredPostsSearch = posts.filter(post =>
+    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.content?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.username.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const tabList: TabItem[] = [
     { id: 0, name: '전체' },
@@ -52,7 +30,7 @@ export default function Home() {
 
   return (
     <main>
-      <Header />
+      <Header onSearch={setSearchTerm}/>
       <section>
         {/* 탭 */}
         <Tab
@@ -60,9 +38,17 @@ export default function Home() {
           selectedTab={selectedTab}
           setSelectedTab={setSelectedTab}
         />
-        {filteredPosts.map((item) => (
-          <PostCard key={item.id} post={item} />
-        ))}
+        {filteredPostsSearch.length > 0 && searchTerm
+          ? (
+            filteredPostsSearch.map((item) => (
+              <PostCard key={item.id} post={item} />
+            ))
+          ) : (
+            filteredPosts.map((item) => (
+              <PostCard key={item.id} post={item} />
+            ))
+          )
+        }
       </section>
     </main>
   );
