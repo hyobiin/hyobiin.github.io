@@ -1,4 +1,4 @@
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 import { notFound } from "next/navigation";
 import { posts } from "@/data";
 
@@ -25,7 +25,7 @@ export default function PostPage({ params }: PostPageProps){
             </ul>
             <div className={styles.content}>
                 <p className={styles.img_box}><img src={post.imgUrl} alt={`${post.title} 이미지`} /></p>
-                <p>{post.content}</p>
+                <p className={styles.txt_box}>{post.content}</p>
             </div>
         </article>
     )
