@@ -8,8 +8,9 @@ interface PostPageProps {
     }
 }
 
-export default function PostPage({ params }: PostPageProps){
-    const postId = Number(params.id);
+export default async function PostPage({ params }: PostPageProps){
+    const { id } = await params;
+    const postId = Number(id);
     const post = posts.find(p => p.id === postId);
 
     if(!post){
