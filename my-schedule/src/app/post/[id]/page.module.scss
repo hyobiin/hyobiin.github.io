@@ -38,3 +38,37 @@
 .article .txt_box{
     margin-top:20px;
 }
+
+.comment_box{
+    margin:20px;
+    padding:10px;
+    border-top:1px solid #ccc;
+}
+
+.comment_box h2{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.comment_box .inp_box{
+    padding-top:10px;
+}
+
+.comment_box input{
+    padding:5px;
+    border:1px solid #ddd;
+    border-radius:5px;
+}
+
+.comment_box button{
+    margin-left:5px;
+    padding:5px 10px;
+    border-radius:8px;
+    background:#f1f1f1;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.comment_box li{
+    padding-top:10px;
+}

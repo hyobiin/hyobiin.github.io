@@ -6,16 +6,20 @@
     margin-bottom: 1.5rem;
 }
 
-.title {
+.title span{
     font-size: 1.3rem;
     font-weight: bold;
     color: #333;
     text-decoration: none;
 }
 
-.title:hover {
-    text-decoration: underline;
+.title input{
+    margin-right:10px;
 }
+
+/* .title:hover {
+    text-decoration: underline;
+} */
 
 .description {
     color: #555;
