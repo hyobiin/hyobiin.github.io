@@ -16,25 +16,24 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOn, setIsOn] = useState(false);
 
-  const filteredPostsSearch = posts.filter(post =>
-    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    post.content?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    post.username.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const tabList: TabItem[] = [
-    { id: 0, name: '전체' },
-    { id: 1, name: '인기' },
-    { id: 2, name: '최신' },
-    { id: 3, name: '카테고리' },
-  ];
-
+  // 탭 기준으로 먼저 필터
   const filteredPosts = selectedTab === '전체'
     ? posts
     : posts.filter(post => post.category === selectedTab);
 
-  const currnetPostIds = filteredPosts.map(post => post.id); // 활성 탭 게시물의 id ex(전체탭: [1,2,3])
+  // 검색어가 있을 때만 탭 기준 결과에서 검색 (빈 검색어일 땐 빈 배열)
+  const q = searchTerm.trim().toLowerCase();
+  const filteredPostsSearch = q
+    ? filteredPosts.filter(post =>
+      post.title.toLowerCase().includes(q) ||
+      (post.content && post.content.toLowerCase().includes(q)) ||
+      post.username.toLowerCase().includes(q)
+    )
+    : [];
 
+  const displayPosts = q ? filteredPostsSearch : filteredPosts;
+
+  const currnetPostIds = filteredPosts.map(post => post.id); // 활성 탭 게시물의 id ex(전체탭: [1,2,3])
   const isAllSelected = currnetPostIds.every(id => selectedIds.includes(id)); // 전체선택 여부 // 배열 안의 모든 요소가 조건을 만족하는지 확인
 
   const toggleSelectAll = () => { // 전체설택 토글
@@ -45,9 +44,13 @@ export default function Home() {
     }
   }
 
-  const displayPosts = (filteredPostsSearch.length > 0 && searchTerm)
-    ? filteredPostsSearch
-    : filteredPosts;
+  const tabList: TabItem[] = [
+    { id: 0, name: '전체' },
+    { id: 1, name: '인기' },
+    { id: 2, name: '최신' },
+    { id: 3, name: '카테고리' },
+    { id: 4, name: '붕' },
+  ];
 
   useEffect(() => {
     console.log('consolelog=======================');
@@ -87,8 +90,30 @@ export default function Home() {
           {selectedTab} 전체선택
         </label>
 
+        {/* 검색 중이고 검색 결과가 없으면 메시지 보여주기 */}
+        {displayPosts.length > 0 ? (
+          displayPosts.map((item) => (
+            <PostCard
+              key={item.id}
+              post={item}
+              isSelected={selectedIds.includes(item.id)}
+              onToggle={() => {
+                if(selectedIds.includes(item.id)){
+                  setSelectedIds(prev => prev.filter(id => id !== item.id));
+                }else{
+                  setSelectedIds(prev => [...prev, item.id]);
+                }
+              }}
+            />
+          ))
+        ) : q ? (
+          <p className={styles.no_data}>검색 결과 없어요~!</p>
+        ) : (
+          <p className={styles.no_data}>게시물이 없습니다.</p>
+        )}
+
         {/* 하단 코드 리팩토링 */}
-        {displayPosts.map((item) => (
+        {/* {displayPosts.map((item) => (
           <PostCard
             key={item.id}
             post={item}
@@ -101,7 +126,7 @@ export default function Home() {
               }
             }}
           />
-        ))}
+        ))} */}
         {/* {filteredPostsSearch.length > 0 && searchTerm
           ? (
             filteredPostsSearch.map((item) => (

@@ -2,3 +2,10 @@
     padding:10px;
     text-align:right;
 }
+
+.no_data{
+    padding:20px 5px;
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
+}
