@@ -90,17 +90,17 @@ export default function Home() {
         {/* 하단 코드 리팩토링 */}
         {displayPosts.map((item) => (
           <PostCard
-                key={item.id}
-                post={item}
-                isSelected={selectedIds.includes(item.id)}
-                onToggle={() => {
-                  if(selectedIds.includes(item.id)){
-                    setSelectedIds(prev => prev.filter(id => id !== item.id));
-                  }else{
-                    setSelectedIds(prev => [...prev, item.id]);
-                  }
-                }}
-              />
+            key={item.id}
+            post={item}
+            isSelected={selectedIds.includes(item.id)}
+            onToggle={() => {
+              if(selectedIds.includes(item.id)){
+                setSelectedIds(prev => prev.filter(id => id !== item.id));
+              }else{
+                setSelectedIds(prev => [...prev, item.id]);
+              }
+            }}
+          />
         ))}
         {/* {filteredPostsSearch.length > 0 && searchTerm
           ? (

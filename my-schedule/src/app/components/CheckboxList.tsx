@@ -50,14 +50,14 @@ const CheckboxList = ({
 
     return(
         <div>
-            {/* 전체체크 박스 */}
+            {/* 전체선택 박스 */}
             <label>
                 <input
                     type='checkbox'
                     checked={allChecked}
                     onChange={toggleAll}
                 />
-                전체체크
+                전체선택
             </label>
             {/* 각 체크박스 */}
             {optionList.map(v => (
