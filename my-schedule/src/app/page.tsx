@@ -60,6 +60,7 @@ export default function Home() {
   return (
     <main>
       <Header onSearch={setSearchTerm}/>
+      {/* 필터링 */}
       <Toggle
         isOn={isOn}
         isOnFalse='체크 옵션 나옴'
@@ -68,7 +69,7 @@ export default function Home() {
       />
       {isOn && (
         <Checkbox
-        options={['option', 'option2']}
+        options={['전체', '이름', '작성자', '날짜']}
       />
       )}
       <div className={styles.btn_box}>

@@ -36,6 +36,10 @@ const CheckboxList = ({
         console.log(checkedList);
     }, [checkedList]);
 
+    // 1. 옵션 체크 값을 넣는 박스
+    // 2. 그 박스에서 값을 비교 하여 전체선택, 전체해제
+    // 3. 전체선택, 전체해제 텍스트 변경
+
     const toggleAll = () => {
         if(allChecked){
             setCheckedList([]); // 전체해제

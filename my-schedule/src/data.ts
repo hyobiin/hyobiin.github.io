@@ -25,7 +25,7 @@ export const posts: Post[] = [
         id: 3,
         title: '카테고리 포스트',
         description: '3번 포스트 설명',
-        date: '2025-05-30',
+        date: '2025-09-12',
         username: 'user3',
         category: '카테고리',
         content: '카테고리 포스트 내용이 나옵니다. 여기에 포스트의 상세 내용이 들어갑니다. 이 포스트는 특정 카테고리에 속하는 내용입니다.',
