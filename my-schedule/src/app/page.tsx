@@ -34,7 +34,7 @@ export default function Home() {
   const displayPosts = q ? filteredPostsSearch : filteredPosts;
 
   const currnetPostIds = filteredPosts.map(post => post.id); // 활성 탭 게시물의 id ex(전체탭: [1,2,3])
-  const isAllSelected = currnetPostIds.every(id => selectedIds.includes(id)); // 전체선택 여부 // 배열 안의 모든 요소가 조건을 만족하는지 확인
+  const isAllSelected = currnetPostIds.length > 0 && currnetPostIds.every(id => selectedIds.includes(id)); // 전체선택 여부 // 배열 안의 모든 요소가 조건을 만족하는지 확인
 
   const toggleSelectAll = () => { // 전체설택 토글
     if(isAllSelected){
