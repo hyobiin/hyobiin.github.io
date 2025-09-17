@@ -9,6 +9,7 @@ import styles from "./page.module.css";
 import { Button } from "./components/Buttons";
 import { Toggle } from "./components/Toggle";
 import Checkbox from "./components/CheckboxList";
+import UserCrud from "./components/Test";
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState<Category>('전체');
@@ -60,6 +61,7 @@ export default function Home() {
   return (
     <main>
       <Header onSearch={setSearchTerm}/>
+      <UserCrud />
       {/* 필터링 */}
       <Toggle
         isOn={isOn}
