@@ -26,6 +26,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* 버튼 */
 .btn{
   padding:10px;
   border-radius:8px;
@@ -51,13 +52,25 @@ body {
   position:relative;
 }
 
+.btn_pop_wrap .btn{
+  display:inline-block;
+}
+
 .pop_wrap{
-  position:absolute;
-  left:0;
+  position:fixed;
+  left:50%;
+  top:50%;
   min-width:350px;
   border:1px solid #e1e1e1;
   border-radius:20px;
   background:#fefefe;
+  transform:translate(-50%, -50%);
+}
+
+.bottom .pop_wrap{
+  position:absolute;
+  left:0;
+  top:unset;
 }
 
 .pop_wrap .pop_header{
@@ -66,7 +79,19 @@ body {
 }
 
 .pop_wrap .pop_content{
+  overflow-y:auto;
+  max-height:500px;
   padding:10px;
+}
+
+.pop_wrap .pop_content .tit{
+  font-size:20px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.pop_wrap .pop_content .desc{
+  font-size:15px;
 }
 
 .pop_wrap .pop_footer{
@@ -91,4 +116,8 @@ body {
 .g_subtit{
   padding:20px 0 10px;
   font-size:15px;
+}
+
+.g_list{
+  padding-top:20px;;
 }

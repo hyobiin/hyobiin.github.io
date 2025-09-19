@@ -1,32 +1,48 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { ReactNode, useEffect, useRef } from "react";
 import { Button } from "./Buttons";
+
+export enum PopupPosition { // 2번 방법 enum으로 만들어서 관리
+    Top = 'top',
+    Bottom = 'bottom',
+    Left = 'left',
+    Right = 'right',
+    Center = 'center'
+}
 
 interface ButtonProps{
     text: string;
     className?: string;
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 interface DefaultPopupProps{
     text: string;
     isOpen: boolean;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    content: ReactNode;
     buttons?: ButtonProps[];
+    // position?: 'top' | 'right' | 'bottom' | 'left' | 'center'; // 1번 방법: pos 유니온 값 주기
+    position?: PopupPosition; // 2번 방법 enum으로 만들어서 관리
 }
 
 const DefaultPopup = ({
     text,
     isOpen,
     setIsOpen,
-    buttons
+    content,
+    buttons,
+    // position = 'center' // 1번 방법
+    position = PopupPosition.Center, // 2번 방법 enum으로 만들어서 관리
 }: DefaultPopupProps) => {
 
     const outsideRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         // 외부 클릭시
         const handleClickOutside = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if(target.closest(".btn_pop")) return; // 특정 버튼 제외
             if(outsideRef.current && !outsideRef.current.contains(e.target as Node)){
                 setIsOpen(false);
             }
@@ -50,10 +66,16 @@ const DefaultPopup = ({
     }, [setIsOpen]);
 
     return (
-        <div className="btn_pop_wrap">
+        <div className={`
+            btn_pop_wrap
+            ${position ? position.toLowerCase() : ''}
+        `}>
             <Button
                 text={text}
-                onClick={() => setIsOpen(true)}
+                onClick={() => {
+                    setIsOpen(prev => !prev)
+                }}
+                className="btn_pop"
             />
             {isOpen && (
                 <div className="pop_wrap" ref={outsideRef}>
@@ -64,17 +86,7 @@ const DefaultPopup = ({
                         />
                     </div>
                     <div className="pop_content">
-                        팝업 내용 <br />
-                        팝업 내용 <br />
-                        팝업 내용 <br />
-                        팝업 내용 <br />
-                        팝업 내용 <br />
-                        팝업 내용 <br />
-                        팝업 내용 <br />
-                        팝업 내용 <br />
-                        팝업 내용 <br />
-                        팝업 내용 <br />
-                        팝업 내용 <br />
+                        {content}
                     </div>
                     {buttons && buttons.length > 0 && (
                         <div className="pop_footer">
