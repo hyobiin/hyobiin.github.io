@@ -29,15 +29,66 @@ body {
 .btn{
   padding:10px;
   border-radius:8px;
-  background:#dfa1a1;
+  background:#ccc;
   font-weight:bold;
   cursor:pointer;
 }
 
 .btn.blue{
-  background:#a99be7;
+  background:#9bafe7;
 }
 
 .btn.red{
   background:#f38db7;
+}
+
+.btn.green{
+  background:#79cc84;
+}
+
+/* 팝업 */
+.btn_pop_wrap{
+  position:relative;
+}
+
+.pop_wrap{
+  position:absolute;
+  left:0;
+  min-width:350px;
+  border:1px solid #e1e1e1;
+  border-radius:20px;
+  background:#fefefe;
+}
+
+.pop_wrap .pop_header{
+  padding:10px;
+  text-align:right;
+}
+
+.pop_wrap .pop_content{
+  padding:10px;
+}
+
+.pop_wrap .pop_footer{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  padding:10px;
+}
+
+/* 가이드 */
+.guide_wrap{
+  height:100vh;
+  padding:15px;
+  background:#f7f7f7;
+}
+
+.g_tit{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.g_subtit{
+  padding:20px 0 10px;
+  font-size:15px;
 }

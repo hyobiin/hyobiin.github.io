@@ -12,7 +12,7 @@ export function Toggle({ isOn, isOnTrue, isOnFalse, onToggle }: ToggleProps){
         <button
             type="button"
             onClick={onToggle}
-            className={`btn ${isOn ? "red" : "blue"}`}
+            className={`btn ${isOn ? "" : "green"}`}
         >
             {isOn ? isOnTrue : isOnFalse}
         </button>

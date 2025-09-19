@@ -24,7 +24,7 @@ export default function PostCard({ post, isSelected, onToggle }: PostCardProps) 
                     <span>{title}</span>
                 </label>
             </div>
-            <Link href={`/post/${post.id}`} >
+            <Link href={`/post/${post.id}`}>
                 <p className={styles.description}>{description}</p>
                 <div className={styles.footer}>
                     <span className={styles.username}>{username}</span>

@@ -9,7 +9,7 @@ interface ButtonProps{
     className?: string;
 }
 
-export function Button({ text, onClick, href, className = "btn" }: ButtonProps){
+export function Button({ text, onClick, href, className }: ButtonProps){
     const router = useRouter();
 
     // href가 있으면 버튼 클릭 시 페이지 이동
@@ -22,7 +22,7 @@ export function Button({ text, onClick, href, className = "btn" }: ButtonProps){
         <button
             type="button"
             onClick={handleCLick}
-            className={className}
+            className={`btn ${className || ""}`}
         >
             {text}
         </button>

@@ -1,0 +1,21 @@
+.title{
+    padding:20px;
+    font-size:25px;
+    font-weight:bold;
+}
+
+.guide_wrap{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.guide_wrap li + li{
+    border-top:1px solid #ddd;
+}
+
+.guide_wrap a{
+    display:inline-block;
+    padding:10px;
+    font-weight:bold;
+}
