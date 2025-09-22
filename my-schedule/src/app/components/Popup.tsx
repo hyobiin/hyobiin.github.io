@@ -21,6 +21,7 @@ interface DefaultPopupProps{
     text: string;
     isOpen: boolean;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    title?: string;
     content: ReactNode;
     buttons?: ButtonProps[];
     // position?: 'top' | 'right' | 'bottom' | 'left' | 'center'; // 1번 방법: pos 유니온 값 주기
@@ -31,6 +32,7 @@ const DefaultPopup = ({
     text,
     isOpen,
     setIsOpen,
+    title,
     content,
     buttons,
     // position = 'center' // 1번 방법
@@ -79,12 +81,15 @@ const DefaultPopup = ({
             />
             {isOpen && (
                 <div className="pop_wrap" ref={outsideRef}>
-                    <div className="pop_header">
-                        <Button
-                            text="X"
-                            onClick={() => setIsOpen(false)}
-                        />
-                    </div>
+                    {title && (
+                        <div className="pop_header">
+                            <h2>{title}</h2>
+                            <Button
+                                text="X"
+                                onClick={() => setIsOpen(false)}
+                            />
+                        </div>
+                    )}
                     <div className="pop_content">
                         {content}
                     </div>
@@ -95,7 +100,7 @@ const DefaultPopup = ({
                                     key={index}
                                     className={v.className}
                                     text={v.text}
-                                    onClick={() => v.onClick}
+                                    onClick={v.onClick}
                                 />
                             ))}
                         </div>
