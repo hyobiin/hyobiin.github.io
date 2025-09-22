@@ -3,7 +3,8 @@
 import React, { ReactNode, useEffect, useRef } from "react";
 import { Button } from "./Buttons";
 
-export enum PopupPosition { // 2번 방법 enum으로 만들어서 관리
+// 기본 팝업
+export enum PopupPosition{ // 2번 방법 enum으로 만들어서 관리
     Top = 'top',
     Bottom = 'bottom',
     Left = 'left',
@@ -111,4 +112,52 @@ const DefaultPopup = ({
     )
 }
 
-export { DefaultPopup };
+// 토스트 팝업
+interface ToastPopupProps{
+    message: string;
+    duration: number;
+    position: PopupPosition;
+    btnText: string;
+    isOpen: boolean;
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const ToastPopup = ({
+    message = '토스트 팝업입니다.',
+    duration = 6000,
+    position,
+    btnText = 'x',
+    isOpen,
+    setIsOpen
+}: ToastPopupProps) => {
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsOpen(false);
+        }, duration);
+
+        return () => clearTimeout(timer);
+    }, [duration, isOpen]);
+
+    return(
+        <>
+            <Button
+                text={btnText}
+                onClick={() => {
+                    setIsOpen(true)
+                }}
+                className="btn_pop"
+            />
+            {isOpen && (
+                <div className={`toast_popup ${position}`}>
+                    <div className="txt">{message}</div>
+                    <Button
+                        text={'x'}
+                        onClick={() => setIsOpen(false)}
+                    />
+                </div>
+            )}
+        </>
+    )
+}
+
+export { DefaultPopup, ToastPopup };

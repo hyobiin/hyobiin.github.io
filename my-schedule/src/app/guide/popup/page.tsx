@@ -1,11 +1,12 @@
 'use client';
 
 import { useState } from "react";
-import { DefaultPopup, PopupPosition } from "../../components/Popup";
+import { DefaultPopup, PopupPosition, ToastPopup } from "../../components/Popup";
 
 export default function GuidePopup(){
     const [isOpen, setIsOpen] = useState(false);
     const [isOpen2, setIsOpen2] = useState(false);
+    const [isOpen3, setIsOpen3] = useState(false);
 
     return (
         <div className="guide_wrap">
@@ -49,6 +50,17 @@ export default function GuidePopup(){
                         }
                     ]}
                     position={PopupPosition.Bottom}
+                />
+            </div>
+
+            <div className="g_list">
+                <ToastPopup
+                    message="3초후 없어집니다."
+                    position={PopupPosition.Top}
+                    btnText="토스트 팝업"
+                    isOpen={isOpen3}
+                    setIsOpen={setIsOpen3}
+                    duration={0}
                 />
             </div>
         </div>
