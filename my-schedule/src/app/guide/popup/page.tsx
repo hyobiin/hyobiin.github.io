@@ -60,7 +60,7 @@ export default function GuidePopup(){
                     btnText="토스트 팝업"
                     isOpen={isOpen3}
                     setIsOpen={setIsOpen3}
-                    duration={0}
+                    duration={3000}
                 />
             </div>
         </div>

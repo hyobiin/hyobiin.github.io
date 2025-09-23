@@ -124,13 +124,16 @@ interface ToastPopupProps{
 
 const ToastPopup = ({
     message = '토스트 팝업입니다.',
-    duration = 6000,
+    duration = 3000,
     position,
     btnText = 'x',
     isOpen,
     setIsOpen
 }: ToastPopupProps) => {
     useEffect(() => {
+        if(!isOpen) return;
+        if(duration <= 0) return; // duration이 0이면 자동 닫힘 안함
+
         const timer = setTimeout(() => {
             setIsOpen(false);
         }, duration);
@@ -148,7 +151,10 @@ const ToastPopup = ({
                 className="btn_pop"
             />
             {isOpen && (
-                <div className={`toast_popup ${position}`}>
+                <div className={`
+                    toast_popup
+                    ${position ? position.toLowerCase() : ''}
+                `}>
                     <div className="txt">{message}</div>
                     <Button
                         text={'x'}
