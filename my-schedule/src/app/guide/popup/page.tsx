@@ -56,7 +56,7 @@ export default function GuidePopup(){
             <div className="g_list">
                 <ToastPopup
                     message="3초후 없어집니다."
-                    position={PopupPosition.Top}
+                    position={PopupPosition.Bottom}
                     btnText="토스트 팝업"
                     isOpen={isOpen3}
                     setIsOpen={setIsOpen3}

@@ -107,12 +107,22 @@ body {
   z-index:100;
   position:fixed;
   left:0;
-  top:0;
+  top:10px;
   display:flex;
   align-items:center;
   padding:5px 10px 5px 15px;
   border-radius:10px;
   background:#c0d1f3;
+}
+
+.toast_popup.bottom{
+  bottom:10px;
+  top:unset;
+}
+
+.toast_popup.center{
+  top:50%;
+  transform:translateY(-50%);
 }
 
 .toast_popup .btn{
