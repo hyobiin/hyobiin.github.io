@@ -65,6 +65,7 @@ export default function Home() {
       <Header onSearch={setSearchTerm}/>
       {/* <UserCrud /> */}
       {/* 필터링 */}
+      <Button href="/guide" text={"가이드 바로가기"} />
       <Toggle
         isOn={isOn}
         isOnFalse='체크 옵션 나옴'
