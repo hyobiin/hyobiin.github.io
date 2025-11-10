@@ -11,7 +11,7 @@ export default async function PostPage({ params }: { params: { id: string } }){
         notFound(); // 404
     }
 
-    // ***************페이지
+    // **************페이지
     return(
         <>
             <article className={styles.article}>
