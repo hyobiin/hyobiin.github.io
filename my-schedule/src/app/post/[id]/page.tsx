@@ -3,19 +3,7 @@ import { notFound } from "next/navigation";
 import { posts } from "@/data";
 import ClientComments from "./ClientComments";
 
-interface PostPageProps {
-    params: {
-        id: string;
-    }
-}
-
-export async function generateStaticParams(){
-    return posts.map((post) => ({
-        id: post.id.toString(),
-    }));
-}
-
-export default function PostPage({ params }: PostPageProps){
+export default async function PostPage({ params }: { params: { id: string } }){
     const postId = Number(params.id);
     const post = posts.find(p => p.id === postId);
 
