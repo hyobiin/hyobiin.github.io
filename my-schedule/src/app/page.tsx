@@ -9,15 +9,15 @@ import styles from "./page.module.css";
 import { Button } from "./components/Buttons";
 import { Toggle } from "./components/Toggle";
 import Checkbox from "./components/CheckboxList";
-import UserCrud from "./components/Test";
-import { DefaultPopup } from "./components/Popup";
+// import UserCrud from "./components/Test";
+// import { DefaultPopup } from "./components/Popup";
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState<Category>('전체');
   const [selectedIds, setSelectedIds] = useState<number[]>([]); // 선택된 게시물 id 관리
   const [searchTerm, setSearchTerm] = useState('');
   const [isOn, setIsOn] = useState(false);
-  const [isOpen, setIsOpen] = useState(false); // 팝업
+  // const [isOpen, setIsOpen] = useState(false); // 팝업
 
   // 탭 기준으로 먼저 필터
   const filteredPosts = selectedTab === '전체'
