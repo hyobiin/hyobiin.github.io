@@ -1,6 +1,24 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { NextIntlClientProvider } from "next-intl";
+import { ReactNode } from "react";
+
+// 정적 import
+import koMessages from '../../locales/ko/common.json';
+import enMessages from '../../locales/en/common.json';
+import jpMessages from '../../locales/jp/common.json';
+
+interface RootLayoutProps{
+  children:ReactNode;
+  params: { locale: 'ko' | 'en' | 'jp' }; // 다국어 설정
+}
+
+const messagesMap = {
+  ko: koMessages,
+  en: enMessages,
+  jp: jpMessages
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,16 +36,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  children, params
+}: RootLayoutProps) {
+  const messages = messagesMap[params.locale] || koMessages;
+
   return (
-    <html lang="ko">
+    <html lang={params.locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <NextIntlClientProvider messages={messages}> {/* 다국어 설정 */}
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

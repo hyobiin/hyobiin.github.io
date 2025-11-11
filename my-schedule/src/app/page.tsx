@@ -9,10 +9,12 @@ import styles from "./page.module.css";
 import { Button } from "./components/Buttons";
 import { Toggle } from "./components/Toggle";
 import Checkbox from "./components/CheckboxList";
+import { useTranslations } from "next-intl";
 // import UserCrud from "./components/Test";
 // import { DefaultPopup } from "./components/Popup";
 
 export default function Home() {
+  const t = useTranslations(); // 다국어
   const [selectedTab, setSelectedTab] = useState<Category>('전체');
   const [selectedIds, setSelectedIds] = useState<number[]>([]); // 선택된 게시물 id 관리
   const [searchTerm, setSearchTerm] = useState('');
@@ -65,7 +67,7 @@ export default function Home() {
       <Header onSearch={setSearchTerm}/>
       {/* <UserCrud /> */}
       {/* 필터링 */}
-      <Button href="/guide" text={"가이드 바로가기"} />
+      <Button href="/guide" text={t('가이드 바로가기')} />
       <Toggle
         isOn={isOn}
         isOnFalse='체크 옵션 나옴'
