@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { DefaultPopup, PopupPosition, ToastPopup } from "../../components/Popup";
+import { DefaultPopup, PopupPosition, ToastPopup } from "../../[locale]/components/Popup";
 
 export default function GuidePopup(){
     const [isOpen, setIsOpen] = useState(false);

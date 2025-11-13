@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from "@/app/components/Buttons";
+import { Button } from "@/app/[locale]/components/Buttons";
 import { useState } from "react";
 
 export default function GuideButton(){

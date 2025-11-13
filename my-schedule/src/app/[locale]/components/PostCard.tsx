@@ -1,5 +1,5 @@
 'use client';
-import styles from '../../styles/PostCard.module.css';
+import styles from '../../../styles/PostCard.module.css';
 import Link from 'next/link';
 import { Post } from '@/types';
 
