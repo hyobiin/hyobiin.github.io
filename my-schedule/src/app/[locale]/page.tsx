@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import PostCard from "./components/PostCard";
@@ -11,8 +12,9 @@ import { Toggle } from "./components/Toggle";
 import Checkbox from "./components/CheckboxList";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
+import { DefaultPopup, PopupPosition } from "./components/Popup";
+import { useRouter } from "next/navigation";
 // import UserCrud from "./components/Test";
-// import { DefaultPopup } from "./components/Popup";
 
 export default function Home() {
   const t = useTranslations(''); // 다국어
@@ -22,6 +24,7 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOn, setIsOn] = useState(false);
   // const [isOpen, setIsOpen] = useState(false); // 팝업
+  const [isLangOpen, setIsLangOpen] = useState(false);
 
   // 탭 기준으로 먼저 필터
   const filteredPosts = selectedTab === '전체'
@@ -59,6 +62,18 @@ export default function Home() {
     { id: 4, name: '붕' },
   ];
 
+  const router = useRouter();
+
+  const changeLocale = (locale: 'ko' | 'en' | 'jp') => {
+    // 현재 경로 가져오기
+    const pathname = window.location.pathname;
+    // locale 부분만 바꿔서 push
+    const segments = pathname.split('/');
+    segments[1] = locale;
+    router.push(segments.join('/'));
+    setIsLangOpen(false);
+  }
+
   useEffect(() => {
     console.log('consolelog=======================');
     console.log(currnetPostIds);
@@ -69,7 +84,19 @@ export default function Home() {
       <Header onSearch={setSearchTerm}/>
       {/* <UserCrud /> */}
       {/* 다국어 설정 */}
-
+      <DefaultPopup
+        text="언어 설정"
+        isOpen={isLangOpen}
+        setIsOpen={setIsLangOpen}
+        content={
+          <>
+            <button onClick={() => changeLocale('ko')}>한국어</button>
+            <button onClick={() => changeLocale('en')}>En</button>
+            <button onClick={() => changeLocale('jp')}>Jp</button>
+          </>
+        }
+        position={PopupPosition.Bottom}
+      />
       {/* 필터링 */}
       <Button href={`/${params.locale}/guide`} text={t('가이드 바로가기')} />
       <Toggle

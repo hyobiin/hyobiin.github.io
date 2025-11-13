@@ -4,9 +4,7 @@ import { getRequestConfig } from 'next-intl/server';
 export default getRequestConfig(async ({ requestLocale }) => {
     const locale = requestLocale ?? 'ko';  // 기본 로케일 지정
 
-    // messages 폴더에 en.json, ko.json 등 존재해야 함
     let messages;
-    //  = (await import(`../locales/${locale}.json`)).default;
 
     switch(locale){
         case 'en':
