@@ -47,6 +47,12 @@ body {
   background:#79cc84;
 }
 
+/* 다국어 설정 */
+.lang_box button{
+  display:block;
+  padding:7px 10px;
+}
+
 /* 팝업 */
 .btn_pop_wrap{
   position:relative;
@@ -60,7 +66,7 @@ body {
   position:fixed;
   left:50%;
   top:50%;
-  min-width:350px;
+  min-width:100px;
   border:1px solid #e1e1e1;
   border-radius:20px;
   background:#fefefe;

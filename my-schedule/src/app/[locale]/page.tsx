@@ -89,11 +89,11 @@ export default function Home() {
         isOpen={isLangOpen}
         setIsOpen={setIsLangOpen}
         content={
-          <>
-            <button onClick={() => changeLocale('ko')}>한국어</button>
-            <button onClick={() => changeLocale('en')}>En</button>
-            <button onClick={() => changeLocale('jp')}>Jp</button>
-          </>
+          <div className="lang_box">
+            <button type="button" onClick={() => changeLocale('ko')}>한국어</button>
+            <button type="button" onClick={() => changeLocale('en')}>English</button>
+            <button type="button" onClick={() => changeLocale('jp')}>日本語</button>
+          </div>
         }
         position={PopupPosition.Bottom}
       />
@@ -111,7 +111,7 @@ export default function Home() {
       />
       )}
       <div className={styles.btn_box}>
-        <Button href="/write" text={"게시물 작성"}></Button>
+        <Button href={`/${params.locale}/write`} text={"게시물 작성"}></Button>
       </div>
       <section>
         {/* 탭 */}
@@ -146,7 +146,7 @@ export default function Home() {
             />
           ))
         ) : q ? (
-          <p className={styles.no_data}>검색 결과 없어요~!</p>
+          <p className={styles.no_data}>검색 결과 없어요!</p>
         ) : (
           <p className={styles.no_data}>게시물이 없습니다.</p>
         )}
