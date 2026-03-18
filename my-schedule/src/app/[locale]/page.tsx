@@ -6,6 +6,7 @@ import PostCard from "./components/PostCard";
 import Tab from "./components/Tab";
 import { TabItem, Category } from "@/types";
 import { posts } from "@/data";
+import { Post } from "@/types";
 import styles from "../page.module.css";
 import { Button } from "./components/Buttons";
 import { Toggle } from "./components/Toggle";
@@ -25,11 +26,13 @@ export default function Home() {
   const [isOn, setIsOn] = useState(false);
   // const [isOpen, setIsOpen] = useState(false); // 팝업
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [localPosts, setLocalPosts] = useState<Post[]>([]); // 게시물 작성한 localstage
 
   // 탭 기준으로 먼저 필터
+  const allPosts = [...posts, ...localPosts];
   const filteredPosts = selectedTab === '전체'
-    ? posts
-    : posts.filter(post => post.category === selectedTab);
+    ? allPosts
+    : allPosts.filter(post => post.category === selectedTab);
 
   // 검색어가 있을 때만 탭 기준 결과에서 검색 (빈 검색어일 땐 빈 배열)
   const q = searchTerm.trim().toLowerCase();
@@ -75,6 +78,11 @@ export default function Home() {
   }
 
   useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem('posts') || '[]') as Post[];
+    setLocalPosts(stored);
+  }, []);
+
+  useEffect(() => {
     console.log('consolelog=======================');
     console.log(currnetPostIds);
   }, [currnetPostIds]);
@@ -107,8 +115,8 @@ export default function Home() {
       />
       {isOn && (
         <Checkbox
-        options={['전체', '이름', '작성자', '날짜']}
-      />
+          options={['전체', '이름', '작성자', '날짜']}
+        />
       )}
       <div className={styles.btn_box}>
         <Button href={`/${params.locale}/write`} text={"게시물 작성"}></Button>

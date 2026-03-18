@@ -1,20 +1,44 @@
 "use client"
 
 import { useState } from "react"
+import { Post } from "@/types";
+import { useParams, useRouter } from "next/navigation";
 
 export default function WritePage(){
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const router = useRouter();
+    const params = useParams();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
+        // 기존 localStorage 게시물 불러오기
+        const existing = JSON.parse(localStorage.getItem('posts') || '[]') as Post[];
+
+        // 새 게시물 만들기
+        const newPost: Post = {
+            id: Date.now(),
+            title,
+            description: content.slice(0, 50),
+            date: new Date().toISOString().split('T')[0], // 오늘 날짜
+            username: '나',
+            category: '최신',
+            content,
+        }
+
+        // 저장
+        localStorage.setItem('posts', JSON.stringify([...existing, newPost]))
+
+        // 홈으로 이동
+        router.push(`/${params.locale}`);
 
         console.log("제목: ", title);
         console.log("내용: ", content);
 
         //초기화
-        setTitle("");
-        setContent("");
+        // setTitle("");
+        // setContent("");
     };
 
     return(
@@ -44,8 +68,8 @@ export default function WritePage(){
                     />
                 </label>
                 </div>
-                <button type="submit" style={{ padding: "0.5rem 1rem" }}>
-                등록하기
+                <button type="submit" style={{ padding: "0.5rem 1rem", background: 'pink' }}>
+                    등록하기
                 </button>
             </form>
         </div>
