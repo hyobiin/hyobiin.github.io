@@ -2,6 +2,7 @@
 import styles from '../../../styles/PostCard.module.css';
 import Link from 'next/link';
 import { Post } from '@/types';
+import { useParams } from 'next/navigation';
 
 type PostCardProps = {
     post: Post;
@@ -11,6 +12,7 @@ type PostCardProps = {
 
 export default function PostCard({ post, isSelected, onToggle }: PostCardProps) {
     const { title, description, date, username } = post;
+    const params = useParams();
 
     return(
         <div className={styles.card}>
@@ -24,7 +26,7 @@ export default function PostCard({ post, isSelected, onToggle }: PostCardProps) 
                     <span>{title}</span>
                 </label>
             </div>
-            <Link href={`/post/${post.id}`}>
+            <Link href={`/${params.locale}/post/${post.id}`}>
                 <p className={styles.description}>{description}</p>
                 <div className={styles.footer}>
                     <span className={styles.username}>{username}</span>
