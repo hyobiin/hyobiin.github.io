@@ -26,7 +26,7 @@ export default function Home() {
   const [isOn, setIsOn] = useState(false);
   // const [isOpen, setIsOpen] = useState(false); // 팝업
   const [isLangOpen, setIsLangOpen] = useState(false);
-  const [localPosts, setLocalPosts] = useState<Post[]>([]); // 게시물 작성한 localstage
+  const [localPosts, setLocalPosts] = useState<Post[]>([]); // 게시물 작성한 localStorage
 
   // 탭 기준으로 먼저 필터
   const allPosts = [...posts, ...localPosts];
@@ -150,6 +150,13 @@ export default function Home() {
                 }else{
                   setSelectedIds(prev => [...prev, item.id]);
                 }
+              }}
+              onDelete={() => {
+                setLocalPosts(prev => {
+                  const updated = prev.filter(post => post.id !== item.id); // 현재 id 값과 id가 불일치하는 값들만 다시 담음
+                  localStorage.setItem('posts', JSON.stringify(updated))
+                  return updated
+                });
               }}
             />
           ))
