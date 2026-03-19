@@ -10,9 +10,10 @@ type PostCardProps = {
     isSelected: boolean;
     onToggle: () => void;
     onDelete: () => void;
+    isLocalPost: boolean; // 내가 쓴 글인지 아닌지 판별
 };
 
-export default function PostCard({ post, isSelected, onToggle, onDelete }: PostCardProps) {
+export default function PostCard({ post, isSelected, onToggle, onDelete, isLocalPost }: PostCardProps) {
     const { title, description, date, username } = post;
     const params = useParams();
 
@@ -27,10 +28,12 @@ export default function PostCard({ post, isSelected, onToggle, onDelete }: PostC
                     />
                     <span>{title}</span>
                 </label>
-                <Button
-                    text='삭제'
-                    onClick={onDelete}
-                />
+                {isLocalPost &&
+                    <Button
+                        text='삭제'
+                        onClick={onDelete}
+                    />
+                }
             </div>
             <Link href={`/${params.locale}/post/${post.id}`}>
                 <p className={styles.description}>{description}</p>

@@ -4,9 +4,8 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import PostCard from "./components/PostCard";
 import Tab from "./components/Tab";
-import { TabItem, Category } from "@/types";
+import { TabItem, Category, Post } from "@/types";
 import { posts } from "@/data";
-import { Post } from "@/types";
 import styles from "../page.module.css";
 import { Button } from "./components/Buttons";
 import { Toggle } from "./components/Toggle";
@@ -158,6 +157,7 @@ export default function Home() {
                   return updated
                 });
               }}
+              isLocalPost={localPosts.some(p => p.id === item.id)}
             />
           ))
         ) : q ? (

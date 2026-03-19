@@ -1,3 +1,5 @@
+'use client'
+
 import styles from "./page.module.scss";
 import { notFound } from "next/navigation";
 import { posts } from "@/data";
